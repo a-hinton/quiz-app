@@ -13,20 +13,39 @@
         <header>
             <div id="answer-counter">Correct Answers: <span id="number-correct"></span></div>
 
-            <div id="timer">Time Remaining: <span id="countdown"></span></div>
+            <div id="timer-container">Time Remaining: <span id="countdown"></span></div>
         </header>
 
-        <h1>JavaScript Quiz</h1>
+        <div id="container">
+            <h1>JavaScript Quiz</h1>
 
-        <div id="game-card">
-            <div id="question"></div>
+            <!-- Beginning game screen. Choose a button to start game or view high scores -->
+            <div id="buttons">
+                <button id="start">Start Game</button>
+                <button id="high-score">High Scores</button>
+            </div>
 
-            <button id="submitBtn">Submit Answer</button>
+            <!-- Game content. Hidden until start of game -->
+            <div id="game-card" style="display:none">
+                <div id="question"></div>
 
-            <div id="end-game"></div>
+                <div id="choices">
 
+                    <div class="choice" id="a"></div>
+
+                    <div class="choice" id="b"></div>
+
+                    <div class="choice" id="c"></div>
+
+                    <div class="choice" id="d"></div>
+
+                </div>
+                <button id="submitBtn">Submit Answer</button>
+
+                <div id="end-game"></div>
+
+            </div>
         </div>
-
         <script src="assets/jss/script.js"></script>
     </body>
 </html>
