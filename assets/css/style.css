@@ -1,0 +1,24 @@
+
+:root {
+    --tan-primary: #887360;
+    --blue-secondary: #444a5b;
+    --green-tertiary: #4c6b4e;
+    --orange-accent: #804615;
+    --blue-accent: #162856;
+    --green-accent: #116416;
+    --tan-text: #ffd1aa;
+    --blue-text: #7887ab;
+    --green-text: #86c98a;
+}
+
+body {
+    background-color: var(--tan-primary);
+}
+
+header {
+    display: flex;
+    font-size: 1.25rem;
+    background-color: var(--orange-accent);
+    color: var(--tan-text);
+    padding: 10px;
+}
