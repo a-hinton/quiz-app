@@ -7,6 +7,8 @@ let container = document.getElementById('container');
 let buttons = document.getElementById('buttons');
 let start = document.getElementById('start');
 let highScore = document.getElementById('high-score');
+
+// IDs for game card
 let gameCard = document.getElementById('game-card');
 let question = document.getElementById('question');
 let choices = document.getElementById('choices');
@@ -15,19 +17,25 @@ let choiceA = document.getElementById('a');
 let choiceB = document.getElementById('b');
 let choiceC = document.getElementById('c');
 let choiceD = document.getElementById('d');
-let submitBtn = document.getElementById('submitBtn');
+
+let name = document.getElementById('name');
+
+let scoreDisplay = document.getElementById('score-display');
+let saveBtn = document.getElementById('save-score');
+let scoreBtn = document.getElementById('display-scores');
+let score = document.getElementById('score');
 let endNotice = document.getElementById('end-game');
 
 // Declare variables
-let timeRemaining = 40;
+let timeRemaining = 90;
 let timeElapsed = 0;
-const lastQuestionIndex = questionSet.length - 1;
+let timer ;
 let currentQuestion = 0;
 
 // Declare quiz questions
 let questionSet = [
     {
-        question: "When was JavaScript created",
+        question: "When was JavaScript created?",
         answers: {
             a: "1995",
             b: "2000",
@@ -104,23 +112,21 @@ let questionSet = [
     }
 ];
 
-// console.log(questionSet[1])
+const lastQuestionIndex = questionSet.length - 1;
 
 function startGame() {
     // Upon game start, hide Start and high score buttons
     buttons.style.display = "none";
 
     // Display first question
-    displayQustion();
+    displayQuestion();
 
     // Reveal game card section
     gameCard.style.display = "block";
 
     // start timer
     timerCountdown();
-
-    let timer = setInterval(timerCountdown, 1000);
-
+    timer = setInterval(timerCountdown, 1000);
 };
 
 // Timer Function
@@ -134,41 +140,65 @@ function timerCountdown(){
 
 // Triggers game over condition
 function gameOver() {
+    // Display score on screen
+    score.textContent = timeRemaining;
+
+    // Hide uneeded portions
+    gameCard.style.display = "none";
+
+    // display end-card div
+    endNotice.style.display = "block";
+
+    // Reset interval counter and timer
     clearInterval(timer);
     timeRemaining=0
 };
 
 // Display game questions
-function displayQustion() {
+function displayQuestion() {
     // choose current question from array of questions
     let q = questionSet[currentQuestion];
 
     // display current question and answers in HTML element
-    question.textContent = "<p>" + q.question + "</p>"
-    choiceA.textContent = q.a;
-    choiceB.textContent = q.b;
-    choiceC.textContent = q.c;
-    choiceD.textContent = q.d;
+    question.textContent = q.question;
+    choiceA.textContent = q.answers.a;
+    choiceB.textContent = q.answers.b;
+    choiceC.textContent = q.answers.c;
+    choiceD.textContent = q.answers.d;
 }
 
 
 // Check answer
-function checkAnswers() {
-
+function checkAnswers(event) {
+    console.log(event.target.value)
+    if (event.target === questionSet.correctAnswer) {
+        currentQuestion++;
+        displayQuestion();
+    }
+    else {
+        timeRemaining -= 10;
+        currentQuestion++;
+        displayQuestion();
+    }
 };
 
 // Log endgame results
 function logScore() {
-
+    localStorage.setItem("name", name.value);
 };
 
 // Display high scores
 function displayScores() {
-
+    localStorage.getItem("name");
 };
 
+// Loop button options
+for (let i=0; i <= choice.length -1; i++){
+    choice[i].addEventListener("click", checkAnswers);
+}
 
-
-// document.getElementById('submitBtn').addEventListener("click", timerCountdown());
-start.addEventListener("click", startGame());
-highScore.addEventListener("click", displayScores());
+// Event listeners
+start.addEventListener("click", startGame);
+highScore.addEventListener("click", displayScores);
+saveBtn.addEventListener("click", logScore);
+scoreBtn.addEventListener("click", displayScores);

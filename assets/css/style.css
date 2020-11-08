@@ -12,13 +12,32 @@
 }
 
 body {
-    background-color: var(--tan-primary);
+    background-color: var(--blue-text);
 }
 
 header {
     display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.25rem;
-    background-color: var(--orange-accent);
-    color: var(--tan-text);
-    padding: 10px;
+    background-color: var(--blue-accent);
+    color: var(--blue-text);
+}
+
+#header {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+#container {
+    width: 40vw;
+    height: 20vw;
+    background-color: var(--blue-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke
+    
 }
