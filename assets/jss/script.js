@@ -27,6 +27,7 @@ let score = document.getElementById('score');
 let endNotice = document.getElementById('end-game');
 
 // Declare variables
+let correct = 0;
 let timeRemaining = 90;
 let timeElapsed = 0;
 let timer ;
@@ -170,8 +171,9 @@ function displayQuestion() {
 
 // Check answer
 function checkAnswers(event) {
-    console.log(event.target.value)
     if (event.target === questionSet.correctAnswer) {
+        correct++;
+        numberCorrect.textContent = correct;
         currentQuestion++;
         displayQuestion();
     }

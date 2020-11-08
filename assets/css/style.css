@@ -1,14 +1,8 @@
 
 :root {
-    --tan-primary: #887360;
     --blue-secondary: #444a5b;
-    --green-tertiary: #4c6b4e;
-    --orange-accent: #804615;
     --blue-accent: #162856;
-    --green-accent: #116416;
-    --tan-text: #ffd1aa;
     --blue-text: #7887ab;
-    --green-text: #86c98a;
 }
 
 body {
@@ -21,7 +15,7 @@ header {
     align-items: center;
     font-size: 1.25rem;
     background-color: var(--blue-accent);
-    color: var(--blue-text);
+    color: whitesmoke;
 }
 
 #header {
@@ -32,12 +26,20 @@ header {
 }
 
 #container {
-    width: 40vw;
-    height: 20vw;
-    background-color: var(--blue-secondary);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: whitesmoke
-    
+    flex-direction: row;
+    margin: 0 auto;
+    margin-top: 10%;
+    color: whitesmoke;
+    width: 40vw;
+    height: 20vw;
+    background-color: var(--blue-secondary);
+    border-radius: 7px;
+    box-shadow: 0 0 3px black;
+}
+
+h1 {
+    display: inline;
 }
