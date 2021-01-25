@@ -27,9 +27,9 @@ header {
 
 #container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     margin: 0 auto;
     margin-top: 10%;
     color: whitesmoke;
@@ -42,4 +42,9 @@ header {
 
 h1 {
     display: inline;
+    margin-top: 10px;
+}
+
+#buttons {
+    margin-bottom: 10px;
 }

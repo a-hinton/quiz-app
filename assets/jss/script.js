@@ -33,6 +33,11 @@ let timeElapsed = 0;
 let timer ;
 let currentQuestion = 0;
 
+// retrieve stored names if any
+let names = localStorage.getItem("names") ? JSON.parse(localStorage.getItem("names")) : []
+
+displayScores();
+
 // Declare quiz questions
 let questionSet = [
     {
@@ -152,14 +157,14 @@ function gameOver() {
 
     // Reset interval counter and timer
     clearInterval(timer);
-    timeRemaining=0
+    
 };
 
 // Display game questions
 function displayQuestion() {
     // choose current question from array of questions
     let q = questionSet[currentQuestion];
-
+    console.log("display question #: " + currentQuestion);
     // display current question and answers in HTML element
     question.textContent = q.question;
     choiceA.textContent = q.answers.a;
@@ -171,27 +176,43 @@ function displayQuestion() {
 
 // Check answer
 function checkAnswers(event) {
-    if (event.target === questionSet.correctAnswer) {
+    console.log(event.target.getAttribute("id"))
+    if (event.target.getAttribute("id") === questionSet[currentQuestion].correctAnswer) {
         correct++;
         numberCorrect.textContent = correct;
-        currentQuestion++;
-        displayQuestion();
     }
     else {
         timeRemaining -= 10;
-        currentQuestion++;
+    }
+    currentQuestion++;
+
+    if (currentQuestion <= lastQuestionIndex) {
         displayQuestion();
+    }
+    else {
+        logScore();
+        gameOver();
     }
 };
 
 // Log endgame results
 function logScore() {
-    localStorage.setItem("name", name.value);
+    // 
+    let savedScore = {
+        name: name.value,
+        score: timeRemaining
+    }
+    names.push(savedScore);
+    localStorage.setItem("names", JSON.stringify(names));
+
+    timeRemaining=0;
+    name.value = "";
 };
 
 // Display high scores
 function displayScores() {
-    localStorage.getItem("name");
+    console.log(names)
+    // localStorage.getItem("names");
 };
 
 // Loop button options
